@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Board Game Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f4f8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .ascii-board {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .rules {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Risk Board Game - Visual Demo</h1>
+        
+        <h2>ASCII Art Board:</h2>
+        <div class="ascii-board" id="ascii-board"></div>
+        
+        <h2>Interactive 2D Board:</h2>
+        <div id="visual-board"></div>
+        
+        <h2>Game Rules:</h2>
+        <div class="rules" id="rules"></div>
+    </div>
+
+    <script>
+        // 2D representation of the Risk board
+        const riskBoard2D = [
+          ['', '', '', 'GL', '', '', '', '', ''],
+          ['', 'NT', 'ON', 'QU', '', '', '', '', ''],
+          ['AK', 'AB', 'WU', 'EU', '', '', '', '', ''],
+          ['', '', 'CA', '', '', '', '', '', ''],
+          ['', '', '', '', '', '', '', '', ''],
+        ];
+
+        // Territory legend for abbreviations
+        const territoryLegend = {
+          'AK': 'Alaska',
+          'NT': 'Northwest Territory', 
+          'AB': 'Alberta',
+          'ON': 'Ontario',
+          'GL': 'Greenland',
+          'QU': 'Quebec',
+          'WU': 'Western United States',
+          'EU': 'Eastern United States',
+          'CA': 'Central America',
+          '': ''
+        };
+
+        // ASCII board
+        const riskBoardAscii = `
+         .-------------------.
+         |   Greenland       |
+         '--------.----------'
+                  |
+   .--------------+-------------------.
+   |  Northwest   |      Ontario      |
+   |  Territory   +--------+---------'
+   '----+----.----'        |
+        |    |             |
+   .----'    |        .----+----.
+   | Alaska  |        |  Quebec |
+   '----+----'        '----+----'
+        |                  |
+   .----'----.        .----'----.
+   | Alberta |        | Eastern |
+   '----+----'        |  US     |
+        |             '----+----'
+   .----'----.             |
+   | Western  |       .----'----.
+   |   US     |       | Central |
+   '----+-----'       | America |
+        |             '---------'
+        `;
+
+        // Game rules
+        const riskRules = `
+RISK: The Game of Global Domination - Basic Rules
+
+1. Objective:
+   - Conquer every territory on the board and eliminate all other players.
+
+2. Setup:
+   - Each player selects a color and receives a set of armies.
+   - Players take turns claiming territories and placing armies.
+   - Shuffle and deal Risk cards if using them.
+
+3. Game Play:
+   - Players take turns in clockwise order.
+   - On your turn:
+     a) Reinforcement: Place new armies based on the number of territories you own, continent bonuses, and Risk card sets.
+     b) Attack: You may attack adjacent territories to try to conquer them. Use dice to resolve battles.
+     c) Fortify: Move armies between connected territories you control.
+
+4. Attacking:
+   - Declare which territory you are attacking from and which you are attacking.
+   - Roll dice (up to 3 for attacker, up to 2 for defender).
+   - Compare highest dice; loser removes one army per lost die.
+   - If attacker eliminates all defenders, they must move at least as many armies as dice rolled into the conquered territory.
+
+5. Risk Cards:
+   - If you conquer at least one territory on your turn, draw a Risk card.
+   - Trade in sets of cards for extra armies.
+
+6. Winning:
+   - The last player remaining after all others are eliminated wins the game.
+
+For full details, consult the official RISK rulebook.
+        `;
+
+        // Function to render the board visually
+        function renderRiskBoard2D() {
+          // Create a container div
+          let container = document.createElement('div');
+          container.style.display = 'inline-block';
+          container.style.background = 'linear-gradient(135deg, #3a6ea5 0%, #b3cde0 100%)';
+          container.style.padding = '24px';
+          container.style.borderRadius = '16px';
+          container.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
+          container.style.fontFamily = 'monospace';
+
+          // Create the board as a table
+          let table = document.createElement('table');
+          table.style.borderCollapse = 'collapse';
+          table.style.background = 'rgba(255,255,255,0.85)';
+          table.style.marginBottom = '16px';
+
+          for (let row of riskBoard2D) {
+            let tr = document.createElement('tr');
+            for (let cell of row) {
+              let td = document.createElement('td');
+              td.style.width = '60px';
+              td.style.height = '36px';
+              td.style.textAlign = 'center';
+              td.style.verticalAlign = 'middle';
+              td.style.border = cell.trim() ? '2px solid #444' : 'none';
+              td.style.background = cell.trim() ? '#e0eafc' : 'transparent';
+              td.style.color = cell.trim() ? '#222' : 'transparent';
+              td.style.fontWeight = 'bold';
+              td.style.borderRadius = '6px';
+              td.textContent = cell.trim() ? cell : '';
+              
+              // Add hover effect for territories
+              if (cell.trim()) {
+                td.style.cursor = 'pointer';
+                td.style.transition = 'all 0.2s ease';
+                td.addEventListener('mouseenter', function() {
+                  this.style.background = '#ffd700';
+                  this.style.transform = 'scale(1.1)';
+                });
+                td.addEventListener('mouseleave', function() {
+                  this.style.background = '#e0eafc';
+                  this.style.transform = 'scale(1)';
+                });
+                td.addEventListener('click', function() {
+                  alert(`Territory: ${territoryLegend[cell]} (${cell})`);
+                });
+              }
+              
+              tr.appendChild(td);
+            }
+            table.appendChild(tr);
+          }
+          container.appendChild(table);
+
+          // Add a legend
+          let legendTitle = document.createElement('div');
+          legendTitle.textContent = 'Legend (Click territories for details):';
+          legendTitle.style.fontWeight = 'bold';
+          legendTitle.style.marginBottom = '8px';
+          legendTitle.style.color = 'white';
+          container.appendChild(legendTitle);
+
+          let legend = document.createElement('div');
+          legend.style.fontSize = '13px';
+          legend.style.maxWidth = '600px';
+          legend.style.display = 'flex';
+          legend.style.flexWrap = 'wrap';
+          legend.style.color = 'white';
+
+          Object.entries(territoryLegend)
+            .filter(([abbr]) => abbr.trim())
+            .forEach(([abbr, name]) => {
+              let entry = document.createElement('div');
+              entry.textContent = `${abbr}: ${name}`;
+              entry.style.marginRight = '18px';
+              entry.style.marginBottom = '4px';
+              entry.style.padding = '2px 6px';
+              entry.style.background = 'rgba(255,255,255,0.2)';
+              entry.style.borderRadius = '4px';
+              legend.appendChild(entry);
+            });
+
+          container.appendChild(legend);
+          return container;
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+          // Add ASCII board
+          document.getElementById('ascii-board').textContent = riskBoardAscii;
+          
+          // Add visual board
+          document.getElementById('visual-board').appendChild(renderRiskBoard2D());
+          
+          // Add rules
+          document.getElementById('rules').innerHTML = riskRules.replace(/\n/g, '<br>');
+        });
+    </script>
+</body>
+</html>

@@ -40,6 +40,29 @@ const riskBoardAscii = `
         |             '---------'
 `;
 
+// 2D representation of the Risk board
+const riskBoard2D = [
+  ['', '', '', 'GL', '', '', '', '', ''],
+  ['', 'NT', 'ON', 'QU', '', '', '', '', ''],
+  ['AK', 'AB', 'WU', 'EU', '', '', '', '', ''],
+  ['', '', 'CA', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', ''],
+];
+
+// Territory legend for abbreviations
+const territoryLegend = {
+  'AK': 'Alaska',
+  'NT': 'Northwest Territory', 
+  'AB': 'Alberta',
+  'ON': 'Ontario',
+  'GL': 'Greenland',
+  'QU': 'Quebec',
+  'WU': 'Western United States',
+  'EU': 'Eastern United States',
+  'CA': 'Central America',
+  '': ''
+};
+
 // Function to print the board
 function printRiskBoard() {
   console.log(riskBoardAscii);
@@ -47,8 +70,8 @@ function printRiskBoard() {
 
 // Example usage
 printRiskBoard();
-// Rules of Risk (as a string for display)
 
+// Rules of Risk (as a string for display)
 const riskRules = `
 RISK: The Game of Global Domination - Basic Rules
 
@@ -89,6 +112,7 @@ function printRiskRules() {
 
 // Example usage:
 printRiskRules();
+
 // The previous code is for a Node.js/console environment, not a front-end editor.
 // If you want a visual board in a front-end (browser) editor, you can use HTML and CSS.
 // Here is a simple example using JavaScript to generate a 2D Risk board in the browser:
