@@ -3,7 +3,7 @@
 // Define continents with their colors and territories
 const continents = {
   "North America": {
-    color: "#D4B08A", // Light brown
+    color: "#FFEB3B", // Bright yellow like classic Risk
     territories: [
       { name: "Alaska", x: 50, y: 120, width: 80, height: 60 },
       { name: "Northwest Territory", x: 140, y: 80, width: 120, height: 70 },
@@ -17,7 +17,7 @@ const continents = {
     ]
   },
   "South America": {
-    color: "#F4E4A6", // Light yellow
+    color: "#FF5722", // Red-orange like classic Risk
     territories: [
       { name: "Venezuela", x: 200, y: 360, width: 80, height: 60 },
       { name: "Brazil", x: 250, y: 420, width: 120, height: 100 },
@@ -26,7 +26,7 @@ const continents = {
     ]
   },
   "Europe": {
-    color: "#A8C8EC", // Light blue
+    color: "#2196F3", // Blue like classic Risk
     territories: [
       { name: "Iceland", x: 380, y: 100, width: 60, height: 50 },
       { name: "Great Britain", x: 420, y: 150, width: 70, height: 60 },
@@ -38,7 +38,7 @@ const continents = {
     ]
   },
   "Asia": {
-    color: "#C8E6C9", // Light green
+    color: "#4CAF50", // Green like classic Risk
     territories: [
       { name: "Ural", x: 620, y: 120, width: 80, height: 70 },
       { name: "Siberia", x: 680, y: 80, width: 120, height: 90 },
@@ -55,7 +55,7 @@ const continents = {
     ]
   },
   "Africa": {
-    color: "#DDBF8C", // Sandy brown
+    color: "#FF9800", // Orange like classic Risk
     territories: [
       { name: "Egypt", x: 520, y: 320, width: 70, height: 60 },
       { name: "East Africa", x: 580, y: 380, width: 80, height: 90 },
@@ -66,7 +66,7 @@ const continents = {
     ]
   },
   "Australia": {
-    color: "#E1BEE7", // Light purple
+    color: "#9C27B0", // Purple like classic Risk
     territories: [
       { name: "Indonesia", x: 820, y: 450, width: 80, height: 60 },
       { name: "New Guinea", x: 900, y: 460, width: 70, height: 50 },
@@ -96,30 +96,71 @@ function createRiskBoard() {
   container.style.cssText = `
     width: 1000px;
     height: 700px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border: 3px solid #8B4513;
-    border-radius: 15px;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%),
+      linear-gradient(45deg, #F4E4BC 0%, #E8D5B7 25%, #F4E4BC 50%, #E8D5B7 75%, #F4E4BC 100%);
+    border: 5px solid #8B4513;
+    border-radius: 20px;
     position: relative;
     margin: 20px auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 
+      0 0 0 3px #D2691E,
+      0 15px 35px rgba(0,0,0,0.4),
+      inset 0 0 20px rgba(139, 69, 19, 0.1);
     font-family: 'Georgia', serif;
     overflow: hidden;
   `;
+
+  // Add vintage paper texture overlay
+  const textureOverlay = document.createElement('div');
+  textureOverlay.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 2%),
+      radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.1) 0%, transparent 2%),
+      radial-gradient(circle at 45% 80%, rgba(101, 67, 33, 0.05) 0%, transparent 3%);
+    pointer-events: none;
+  `;
+  container.appendChild(textureOverlay);
 
   // Add title
   const title = document.createElement('div');
   title.textContent = 'RISK: The Game of Global Domination';
   title.style.cssText = `
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #8B4513;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 
+      2px 2px 0px #D2691E,
+      4px 4px 8px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
   `;
   container.appendChild(title);
+
+  // Add compass rose decoration
+  const compass = document.createElement('div');
+  compass.innerHTML = '⚜️';
+  compass.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+  `;
+  container.appendChild(compass);
 
   // Create territories for each continent
   Object.entries(continents).forEach(([continentName, continent]) => {
@@ -132,19 +173,27 @@ function createRiskBoard() {
         width: ${territory.width}px;
         height: ${territory.height}px;
         background: ${continent.color};
-        border: 2px solid #654321;
-        border-radius: 8px;
+        border: 4px solid #2C1810;
+        border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 11px;
+        font-size: 10px;
         font-weight: bold;
-        color: #2c3e50;
+        color: #1a1a1a;
         text-align: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-        text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        box-shadow: 
+          0 0 0 2px rgba(255,255,255,0.3),
+          inset 0 2px 4px rgba(255,255,255,0.4),
+          inset 0 -2px 4px rgba(0,0,0,0.2),
+          3px 3px 8px rgba(0,0,0,0.3);
+        text-shadow: 
+          1px 1px 2px rgba(255,255,255,0.8),
+          -1px -1px 1px rgba(0,0,0,0.3);
+        z-index: 2;
+        border-style: double;
       `;
       
       territoryDiv.textContent = territory.name;
@@ -152,15 +201,27 @@ function createRiskBoard() {
       
       // Add hover effects
       territoryDiv.addEventListener('mouseenter', () => {
-        territoryDiv.style.transform = 'scale(1.05)';
+        territoryDiv.style.transform = 'scale(1.08)';
         territoryDiv.style.zIndex = '10';
-        territoryDiv.style.boxShadow = '4px 4px 12px rgba(0,0,0,0.4)';
+        territoryDiv.style.boxShadow = `
+          0 0 0 3px rgba(255,255,255,0.6),
+          inset 0 2px 4px rgba(255,255,255,0.6),
+          inset 0 -2px 4px rgba(0,0,0,0.3),
+          5px 5px 15px rgba(0,0,0,0.5)`;
+        territoryDiv.style.borderColor = '#1a1a1a';
+        territoryDiv.style.borderWidth = '5px';
       });
       
       territoryDiv.addEventListener('mouseleave', () => {
         territoryDiv.style.transform = 'scale(1)';
-        territoryDiv.style.zIndex = '1';
-        territoryDiv.style.boxShadow = '2px 2px 6px rgba(0,0,0,0.2)';
+        territoryDiv.style.zIndex = '2';
+        territoryDiv.style.boxShadow = `
+          0 0 0 2px rgba(255,255,255,0.3),
+          inset 0 2px 4px rgba(255,255,255,0.4),
+          inset 0 -2px 4px rgba(0,0,0,0.2),
+          3px 3px 8px rgba(0,0,0,0.3)`;
+        territoryDiv.style.borderColor = '#2C1810';
+        territoryDiv.style.borderWidth = '4px';
       });
       
       container.appendChild(territoryDiv);
@@ -171,22 +232,28 @@ function createRiskBoard() {
   const legend = document.createElement('div');
   legend.style.cssText = `
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(255,255,255,0.9);
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #8B4513;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(244, 228, 188, 0.95);
+    padding: 18px;
+    border-radius: 15px;
+    border: 4px double #8B4513;
     font-size: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 
+      0 6px 12px rgba(0,0,0,0.3),
+      inset 0 1px 3px rgba(255,255,255,0.3);
+    z-index: 5;
   `;
   
   const legendTitle = document.createElement('div');
   legendTitle.textContent = 'Continents:';
   legendTitle.style.cssText = `
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #8B4513;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    border-bottom: 2px solid #8B4513;
+    padding-bottom: 5px;
   `;
   legend.appendChild(legendTitle);
   
@@ -195,22 +262,29 @@ function createRiskBoard() {
     legendItem.style.cssText = `
       display: flex;
       align-items: center;
-      margin: 4px 0;
+      margin: 6px 0;
     `;
     
     const colorBox = document.createElement('div');
     colorBox.style.cssText = `
-      width: 20px;
-      height: 15px;
+      width: 24px;
+      height: 18px;
       background: ${continent.color};
-      border: 1px solid #654321;
-      margin-right: 8px;
-      border-radius: 3px;
+      border: 3px double #2C1810;
+      margin-right: 10px;
+      border-radius: 5px;
+      box-shadow: 
+        inset 0 1px 2px rgba(255,255,255,0.4),
+        inset 0 -1px 2px rgba(0,0,0,0.2);
     `;
     
     const nameSpan = document.createElement('span');
     nameSpan.textContent = name;
-    nameSpan.style.color = '#2c3e50';
+    nameSpan.style.cssText = `
+      color: #2c3e50;
+      text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+      font-weight: 600;
+    `;
     
     legendItem.appendChild(colorBox);
     legendItem.appendChild(nameSpan);
@@ -223,21 +297,24 @@ function createRiskBoard() {
   const armyDisplay = document.createElement('div');
   armyDisplay.style.cssText = `
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(255,255,255,0.9);
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #8B4513;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(244, 228, 188, 0.95);
+    padding: 18px;
+    border-radius: 15px;
+    border: 4px double #8B4513;
     font-size: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 
+      0 6px 12px rgba(0,0,0,0.3),
+      inset 0 1px 3px rgba(255,255,255,0.3);
+    z-index: 5;
   `;
   
   armyDisplay.innerHTML = `
-    <div style="font-weight: bold; margin-bottom: 8px; color: #8B4513;">Game Info:</div>
-    <div style="color: #2c3e50;">Click territories to select</div>
-    <div style="color: #2c3e50;">Hover for continent info</div>
-    <div style="color: #2c3e50;">Total Territories: ${Object.values(continents).reduce((sum, continent) => sum + continent.territories.length, 0)}</div>
+    <div style="font-weight: bold; margin-bottom: 8px; color: #8B4513; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); border-bottom: 2px solid #8B4513; padding-bottom: 5px;">Game Info:</div>
+    <div style="color: #2c3e50; margin: 4px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.8);">Click territories to select</div>
+    <div style="color: #2c3e50; margin: 4px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.8);">Hover for continent info</div>
+    <div style="color: #2c3e50; margin: 4px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.8);">Total Territories: ${Object.values(continents).reduce((sum, continent) => sum + continent.territories.length, 0)}</div>
   `;
   
   container.appendChild(armyDisplay);
