@@ -5,73 +5,73 @@ const continents = {
   "North America": {
     color: "#FFEB3B", // Bright yellow like classic Risk
     territories: [
-      { name: "Alaska", x: 50, y: 120, width: 80, height: 60 },
-      { name: "Northwest Territory", x: 140, y: 80, width: 120, height: 70 },
-      { name: "Greenland", x: 300, y: 60, width: 100, height: 80 },
-      { name: "Alberta", x: 130, y: 150, width: 90, height: 60 },
-      { name: "Ontario", x: 220, y: 140, width: 80, height: 70 },
-      { name: "Quebec", x: 300, y: 150, width: 70, height: 60 },
-      { name: "Western United States", x: 120, y: 220, width: 100, height: 70 },
-      { name: "Eastern United States", x: 230, y: 220, width: 100, height: 70 },
-      { name: "Central America", x: 150, y: 300, width: 80, height: 50 }
+      { name: "Alaska", x: 50, y: 120, width: 80, height: 60, borderRadius: "25px 15px 15px 25px" },
+      { name: "Northwest Territory", x: 140, y: 80, width: 120, height: 70, borderRadius: "20px 30px 15px 20px" },
+      { name: "Greenland", x: 300, y: 60, width: 100, height: 80, borderRadius: "30px 35px 25px 15px" },
+      { name: "Alberta", x: 130, y: 150, width: 90, height: 60, borderRadius: "15px 20px 20px 15px" },
+      { name: "Ontario", x: 220, y: 140, width: 80, height: 70, borderRadius: "20px 15px 15px 20px" },
+      { name: "Quebec", x: 300, y: 150, width: 70, height: 60, borderRadius: "15px 25px 25px 15px" },
+      { name: "Western United States", x: 120, y: 220, width: 100, height: 70, borderRadius: "20px 25px 25px 20px" },
+      { name: "Eastern United States", x: 230, y: 220, width: 100, height: 70, borderRadius: "25px 20px 20px 25px" },
+      { name: "Central America", x: 150, y: 300, width: 80, height: 50, borderRadius: "15px 15px 30px 30px" }
     ]
   },
   "South America": {
     color: "#FF5722", // Red-orange like classic Risk
     territories: [
-      { name: "Venezuela", x: 200, y: 360, width: 80, height: 60 },
-      { name: "Brazil", x: 250, y: 420, width: 120, height: 100 },
-      { name: "Peru", x: 180, y: 450, width: 70, height: 80 },
-      { name: "Argentina", x: 200, y: 530, width: 90, height: 100 }
+      { name: "Venezuela", x: 200, y: 360, width: 80, height: 60, borderRadius: "25px 25px 15px 15px" },
+      { name: "Brazil", x: 250, y: 420, width: 120, height: 100, borderRadius: "15px 30px 30px 15px" },
+      { name: "Peru", x: 180, y: 450, width: 70, height: 80, borderRadius: "25px 15px 15px 25px" },
+      { name: "Argentina", x: 200, y: 530, width: 90, height: 100, borderRadius: "15px 15px 35px 25px" }
     ]
   },
   "Europe": {
     color: "#2196F3", // Blue like classic Risk
     territories: [
-      { name: "Iceland", x: 380, y: 100, width: 60, height: 50 },
-      { name: "Great Britain", x: 420, y: 150, width: 70, height: 60 },
-      { name: "Scandinavia", x: 480, y: 100, width: 80, height: 70 },
-      { name: "Northern Europe", x: 470, y: 180, width: 90, height: 60 },
-      { name: "Western Europe", x: 400, y: 220, width: 80, height: 70 },
-      { name: "Southern Europe", x: 480, y: 250, width: 100, height: 60 },
-      { name: "Ukraine", x: 550, y: 150, width: 100, height: 80 }
+      { name: "Iceland", x: 380, y: 100, width: 60, height: 50, borderRadius: "30px" },
+      { name: "Great Britain", x: 420, y: 150, width: 70, height: 60, borderRadius: "25px 15px 15px 25px" },
+      { name: "Scandinavia", x: 480, y: 100, width: 80, height: 70, borderRadius: "20px 35px 15px 20px" },
+      { name: "Northern Europe", x: 470, y: 180, width: 90, height: 60, borderRadius: "20px 25px 25px 20px" },
+      { name: "Western Europe", x: 400, y: 220, width: 80, height: 70, borderRadius: "25px 15px 15px 25px" },
+      { name: "Southern Europe", x: 480, y: 250, width: 100, height: 60, borderRadius: "15px 30px 30px 15px" },
+      { name: "Ukraine", x: 550, y: 150, width: 100, height: 80, borderRadius: "25px 25px 25px 25px" }
     ]
   },
   "Asia": {
     color: "#4CAF50", // Green like classic Risk
     territories: [
-      { name: "Ural", x: 620, y: 120, width: 80, height: 70 },
-      { name: "Siberia", x: 680, y: 80, width: 120, height: 90 },
-      { name: "Yakutsk", x: 800, y: 90, width: 90, height: 70 },
-      { name: "Kamchatka", x: 880, y: 100, width: 80, height: 80 },
-      { name: "Irkutsk", x: 750, y: 170, width: 80, height: 60 },
-      { name: "Mongolia", x: 780, y: 240, width: 90, height: 60 },
-      { name: "Afghanistan", x: 600, y: 220, width: 80, height: 70 },
-      { name: "China", x: 780, y: 300, width: 100, height: 80 },
-      { name: "Middle East", x: 550, y: 280, width: 90, height: 70 },
-      { name: "India", x: 680, y: 340, width: 80, height: 80 },
-      { name: "Siam", x: 780, y: 380, width: 70, height: 60 },
-      { name: "Japan", x: 900, y: 280, width: 60, height: 70 }
+      { name: "Ural", x: 620, y: 120, width: 80, height: 70, borderRadius: "25px 20px 20px 25px" },
+      { name: "Siberia", x: 680, y: 80, width: 120, height: 90, borderRadius: "30px 35px 25px 20px" },
+      { name: "Yakutsk", x: 800, y: 90, width: 90, height: 70, borderRadius: "35px 30px 20px 25px" },
+      { name: "Kamchatka", x: 880, y: 100, width: 80, height: 80, borderRadius: "30px 40px 40px 20px" },
+      { name: "Irkutsk", x: 750, y: 170, width: 80, height: 60, borderRadius: "20px 25px 25px 20px" },
+      { name: "Mongolia", x: 780, y: 240, width: 90, height: 60, borderRadius: "25px 25px 25px 25px" },
+      { name: "Afghanistan", x: 600, y: 220, width: 80, height: 70, borderRadius: "20px 25px 25px 20px" },
+      { name: "China", x: 780, y: 300, width: 100, height: 80, borderRadius: "25px 30px 30px 25px" },
+      { name: "Middle East", x: 550, y: 280, width: 90, height: 70, borderRadius: "20px 25px 25px 20px" },
+      { name: "India", x: 680, y: 340, width: 80, height: 80, borderRadius: "25px 15px 30px 25px" },
+      { name: "Siam", x: 780, y: 380, width: 70, height: 60, borderRadius: "15px 25px 25px 15px" },
+      { name: "Japan", x: 900, y: 280, width: 60, height: 70, borderRadius: "30px 35px 35px 30px" }
     ]
   },
   "Africa": {
     color: "#FF9800", // Orange like classic Risk
     territories: [
-      { name: "Egypt", x: 520, y: 320, width: 70, height: 60 },
-      { name: "East Africa", x: 580, y: 380, width: 80, height: 90 },
-      { name: "North Africa", x: 420, y: 340, width: 100, height: 70 },
-      { name: "Congo", x: 500, y: 450, width: 80, height: 80 },
-      { name: "South Africa", x: 520, y: 530, width: 90, height: 70 },
-      { name: "Madagascar", x: 620, y: 550, width: 50, height: 60 }
+      { name: "North Africa", x: 420, y: 320, width: 140, height: 50, borderRadius: "25px 25px 5px 5px" },
+      { name: "Egypt", x: 560, y: 320, width: 60, height: 80, borderRadius: "5px 15px 15px 5px" },
+      { name: "East Africa", x: 580, y: 400, width: 70, height: 120, borderRadius: "15px 25px 25px 15px" },
+      { name: "Congo", x: 480, y: 420, width: 100, height: 100, borderRadius: "25px 5px 5px 25px" },
+      { name: "South Africa", x: 500, y: 520, width: 80, height: 90, borderRadius: "15px 15px 25px 25px" },
+      { name: "Madagascar", x: 650, y: 550, width: 25, height: 70, borderRadius: "15px" }
     ]
   },
   "Australia": {
     color: "#9C27B0", // Purple like classic Risk
     territories: [
-      { name: "Indonesia", x: 820, y: 450, width: 80, height: 60 },
-      { name: "New Guinea", x: 900, y: 460, width: 70, height: 50 },
-      { name: "Western Australia", x: 820, y: 520, width: 90, height: 80 },
-      { name: "Eastern Australia", x: 910, y: 530, width: 90, height: 70 }
+      { name: "Indonesia", x: 820, y: 450, width: 80, height: 60, borderRadius: "25px 25px 15px 15px" },
+      { name: "New Guinea", x: 900, y: 460, width: 70, height: 50, borderRadius: "30px 30px 25px 25px" },
+      { name: "Western Australia", x: 820, y: 520, width: 90, height: 80, borderRadius: "20px 15px 30px 35px" },
+      { name: "Eastern Australia", x: 910, y: 530, width: 90, height: 70, borderRadius: "15px 35px 35px 15px" }
     ]
   }
 };
@@ -166,6 +166,7 @@ function createRiskBoard() {
   Object.entries(continents).forEach(([continentName, continent]) => {
     continent.territories.forEach(territory => {
       const territoryDiv = document.createElement('div');
+      const borderRadius = territory.borderRadius || '15px';
       territoryDiv.style.cssText = `
         position: absolute;
         left: ${territory.x}px;
@@ -174,7 +175,7 @@ function createRiskBoard() {
         height: ${territory.height}px;
         background: ${continent.color};
         border: 4px solid #2C1810;
-        border-radius: 15px;
+        border-radius: ${borderRadius};
         display: flex;
         align-items: center;
         justify-content: center;
