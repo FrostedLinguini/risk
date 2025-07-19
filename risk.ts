@@ -57,12 +57,12 @@ const continents = {
   "Africa": {
     color: "#FF9800", // Orange like classic Risk
     territories: [
-      { name: "North Africa", x: 420, y: 320, width: 140, height: 50, borderRadius: "25px 25px 5px 5px" },
-      { name: "Egypt", x: 560, y: 320, width: 60, height: 80, borderRadius: "5px 15px 15px 5px" },
-      { name: "East Africa", x: 580, y: 400, width: 70, height: 120, borderRadius: "15px 25px 25px 15px" },
-      { name: "Congo", x: 480, y: 420, width: 100, height: 100, borderRadius: "25px 5px 5px 25px" },
-      { name: "South Africa", x: 500, y: 520, width: 80, height: 90, borderRadius: "15px 15px 25px 25px" },
-      { name: "Madagascar", x: 650, y: 550, width: 25, height: 70, borderRadius: "15px" }
+      { name: "North Africa", x: 420, y: 320, width: 180, height: 60, borderRadius: "30px 30px 0px 0px", clipPath: "polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%)" },
+      { name: "Egypt", x: 600, y: 320, width: 50, height: 80, borderRadius: "0px 25px 15px 0px", clipPath: "polygon(0% 0%, 100% 0%, 100% 85%, 60% 100%, 0% 85%)" },
+      { name: "East Africa", x: 580, y: 400, width: 70, height: 100, borderRadius: "0px 20px 20px 0px", clipPath: "polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 20%)" },
+      { name: "Congo", x: 450, y: 380, width: 130, height: 120, borderRadius: "0px 0px 0px 20px", clipPath: "polygon(0% 0%, 90% 0%, 100% 100%, 30% 100%, 0% 80%)" },
+      { name: "South Africa", x: 470, y: 500, width: 110, height: 80, borderRadius: "0px 0px 35px 35px", clipPath: "polygon(25% 0%, 100% 0%, 80% 100%, 0% 100%)" },
+      { name: "Madagascar", x: 680, y: 520, width: 20, height: 60, borderRadius: "10px" }
     ]
   },
   "Australia": {
@@ -167,6 +167,7 @@ function createRiskBoard() {
     continent.territories.forEach(territory => {
       const territoryDiv = document.createElement('div');
       const borderRadius = territory.borderRadius || '15px';
+      const clipPath = territory.clipPath || '';
       territoryDiv.style.cssText = `
         position: absolute;
         left: ${territory.x}px;
@@ -174,8 +175,9 @@ function createRiskBoard() {
         width: ${territory.width}px;
         height: ${territory.height}px;
         background: ${continent.color};
-        border: 4px solid #2C1810;
+        border: 3px solid #2C1810;
         border-radius: ${borderRadius};
+        ${clipPath ? `clip-path: ${clipPath};` : ''}
         display: flex;
         align-items: center;
         justify-content: center;
@@ -186,7 +188,7 @@ function createRiskBoard() {
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: 
-          0 0 0 2px rgba(255,255,255,0.3),
+          0 0 0 1px rgba(255,255,255,0.3),
           inset 0 2px 4px rgba(255,255,255,0.4),
           inset 0 -2px 4px rgba(0,0,0,0.2),
           3px 3px 8px rgba(0,0,0,0.3);
@@ -194,7 +196,7 @@ function createRiskBoard() {
           1px 1px 2px rgba(255,255,255,0.8),
           -1px -1px 1px rgba(0,0,0,0.3);
         z-index: 2;
-        border-style: double;
+        border-style: solid;
       `;
       
       territoryDiv.textContent = territory.name;
@@ -202,27 +204,27 @@ function createRiskBoard() {
       
       // Add hover effects
       territoryDiv.addEventListener('mouseenter', () => {
-        territoryDiv.style.transform = 'scale(1.08)';
+        territoryDiv.style.transform = 'scale(1.05)';
         territoryDiv.style.zIndex = '10';
         territoryDiv.style.boxShadow = `
-          0 0 0 3px rgba(255,255,255,0.6),
+          0 0 0 2px rgba(255,255,255,0.8),
           inset 0 2px 4px rgba(255,255,255,0.6),
           inset 0 -2px 4px rgba(0,0,0,0.3),
-          5px 5px 15px rgba(0,0,0,0.5)`;
+          4px 4px 12px rgba(0,0,0,0.4)`;
         territoryDiv.style.borderColor = '#1a1a1a';
-        territoryDiv.style.borderWidth = '5px';
+        territoryDiv.style.borderWidth = '4px';
       });
       
       territoryDiv.addEventListener('mouseleave', () => {
         territoryDiv.style.transform = 'scale(1)';
         territoryDiv.style.zIndex = '2';
         territoryDiv.style.boxShadow = `
-          0 0 0 2px rgba(255,255,255,0.3),
+          0 0 0 1px rgba(255,255,255,0.3),
           inset 0 2px 4px rgba(255,255,255,0.4),
           inset 0 -2px 4px rgba(0,0,0,0.2),
           3px 3px 8px rgba(0,0,0,0.3)`;
         territoryDiv.style.borderColor = '#2C1810';
-        territoryDiv.style.borderWidth = '4px';
+        territoryDiv.style.borderWidth = '3px';
       });
       
       container.appendChild(territoryDiv);
