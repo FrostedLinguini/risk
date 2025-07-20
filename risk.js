@@ -1,77 +1,101 @@
-// Risk Board Game - Styled like a colorful world map
+// Risk Board Game - Styled like a colorful world map with accurate territory borders
 
 // Define continents with their colors and territories
 const continents = {
   "North America": {
-    color: "#D4B08A", // Light brown
+    color: "#FFEB3B", // Bright yellow like classic Risk
     territories: [
-      { name: "Alaska", x: 50, y: 120, width: 80, height: 60 },
-      { name: "Northwest Territory", x: 140, y: 80, width: 120, height: 70 },
-      { name: "Greenland", x: 300, y: 60, width: 100, height: 80 },
-      { name: "Alberta", x: 130, y: 150, width: 90, height: 60 },
-      { name: "Ontario", x: 220, y: 140, width: 80, height: 70 },
-      { name: "Quebec", x: 300, y: 150, width: 70, height: 60 },
-      { name: "Western United States", x: 120, y: 220, width: 100, height: 70 },
-      { name: "Eastern United States", x: 230, y: 220, width: 100, height: 70 },
-      { name: "Central America", x: 150, y: 300, width: 80, height: 50 }
+      { name: "Alaska", x: 50, y: 120, width: 80, height: 60, borderRadius: "25px 15px 15px 25px" },
+      { name: "Northwest Territory", x: 140, y: 80, width: 120, height: 70, borderRadius: "20px 30px 15px 20px" },
+      { name: "Greenland", x: 300, y: 60, width: 100, height: 80, borderRadius: "30px 35px 25px 15px" },
+      { name: "Alberta", x: 130, y: 150, width: 90, height: 60, borderRadius: "15px 20px 20px 15px" },
+      { name: "Ontario", x: 220, y: 140, width: 80, height: 70, borderRadius: "20px 15px 15px 20px" },
+      { name: "Quebec", x: 300, y: 150, width: 70, height: 60, borderRadius: "15px 25px 25px 15px" },
+      { name: "Western United States", x: 120, y: 220, width: 100, height: 70, borderRadius: "20px 25px 25px 20px" },
+      { name: "Eastern United States", x: 230, y: 220, width: 100, height: 70, borderRadius: "25px 20px 20px 25px" },
+      { name: "Central America", x: 150, y: 300, width: 80, height: 50, borderRadius: "15px 15px 30px 30px" }
     ]
   },
   "South America": {
-    color: "#F4E4A6", // Light yellow
+    color: "#FF5722", // Red-orange like classic Risk
     territories: [
-      { name: "Venezuela", x: 200, y: 360, width: 80, height: 60 },
-      { name: "Brazil", x: 250, y: 420, width: 120, height: 100 },
-      { name: "Peru", x: 180, y: 450, width: 70, height: 80 },
-      { name: "Argentina", x: 200, y: 530, width: 90, height: 100 }
+      { name: "Venezuela", x: 200, y: 360, width: 80, height: 60, borderRadius: "25px 25px 15px 15px" },
+      { name: "Brazil", x: 250, y: 420, width: 120, height: 100, borderRadius: "15px 30px 30px 15px" },
+      { name: "Peru", x: 180, y: 450, width: 70, height: 80, borderRadius: "25px 15px 15px 25px" },
+      { name: "Argentina", x: 200, y: 530, width: 90, height: 100, borderRadius: "15px 15px 35px 25px" }
     ]
   },
   "Europe": {
-    color: "#A8C8EC", // Light blue
+    color: "#2196F3", // Blue like classic Risk
     territories: [
-      { name: "Iceland", x: 380, y: 100, width: 60, height: 50 },
-      { name: "Great Britain", x: 420, y: 150, width: 70, height: 60 },
-      { name: "Scandinavia", x: 480, y: 100, width: 80, height: 70 },
-      { name: "Northern Europe", x: 470, y: 180, width: 90, height: 60 },
-      { name: "Western Europe", x: 400, y: 220, width: 80, height: 70 },
-      { name: "Southern Europe", x: 480, y: 250, width: 100, height: 60 },
-      { name: "Ukraine", x: 550, y: 150, width: 100, height: 80 }
+      { name: "Iceland", x: 380, y: 100, width: 60, height: 50, borderRadius: "30px" },
+      { name: "Great Britain", x: 420, y: 150, width: 70, height: 60, borderRadius: "25px 15px 15px 25px" },
+      { name: "Scandinavia", x: 480, y: 100, width: 80, height: 70, borderRadius: "20px 35px 15px 20px" },
+      { name: "Northern Europe", x: 470, y: 180, width: 90, height: 60, borderRadius: "20px 25px 25px 20px" },
+      { name: "Western Europe", x: 400, y: 220, width: 80, height: 70, borderRadius: "25px 15px 15px 25px" },
+      { name: "Southern Europe", x: 480, y: 250, width: 100, height: 60, borderRadius: "15px 30px 30px 15px" },
+      { name: "Ukraine", x: 550, y: 150, width: 100, height: 80, borderRadius: "25px 25px 25px 25px" }
     ]
   },
   "Asia": {
-    color: "#C8E6C9", // Light green
+    color: "#4CAF50", // Green like classic Risk
     territories: [
-      { name: "Ural", x: 620, y: 120, width: 80, height: 70 },
-      { name: "Siberia", x: 680, y: 80, width: 120, height: 90 },
-      { name: "Yakutsk", x: 800, y: 90, width: 90, height: 70 },
-      { name: "Kamchatka", x: 880, y: 100, width: 80, height: 80 },
-      { name: "Irkutsk", x: 750, y: 170, width: 80, height: 60 },
-      { name: "Mongolia", x: 780, y: 240, width: 90, height: 60 },
-      { name: "Afghanistan", x: 600, y: 220, width: 80, height: 70 },
-      { name: "China", x: 780, y: 300, width: 100, height: 80 },
-      { name: "Middle East", x: 550, y: 280, width: 90, height: 70 },
-      { name: "India", x: 680, y: 340, width: 80, height: 80 },
-      { name: "Siam", x: 780, y: 380, width: 70, height: 60 },
-      { name: "Japan", x: 900, y: 280, width: 60, height: 70 }
+      { name: "Ural", x: 620, y: 120, width: 80, height: 70, borderRadius: "25px 20px 20px 25px" },
+      { name: "Siberia", x: 680, y: 80, width: 120, height: 90, borderRadius: "30px 35px 25px 20px" },
+      { name: "Yakutsk", x: 800, y: 90, width: 90, height: 70, borderRadius: "35px 30px 20px 25px" },
+      { name: "Kamchatka", x: 880, y: 100, width: 80, height: 80, borderRadius: "30px 40px 40px 20px" },
+      { name: "Irkutsk", x: 750, y: 170, width: 80, height: 60, borderRadius: "20px 25px 25px 20px" },
+      { name: "Mongolia", x: 780, y: 240, width: 90, height: 60, borderRadius: "25px 25px 25px 25px" },
+      { name: "Afghanistan", x: 600, y: 220, width: 80, height: 70, borderRadius: "20px 25px 25px 20px" },
+      { name: "China", x: 780, y: 300, width: 100, height: 80, borderRadius: "25px 30px 30px 25px" },
+      { name: "Middle East", x: 550, y: 280, width: 90, height: 70, borderRadius: "20px 25px 25px 20px" },
+      { name: "India", x: 680, y: 340, width: 80, height: 80, borderRadius: "25px 15px 30px 25px" },
+      { name: "Siam", x: 780, y: 380, width: 70, height: 60, borderRadius: "15px 25px 25px 15px" },
+      { name: "Japan", x: 900, y: 280, width: 60, height: 70, borderRadius: "30px 35px 35px 30px" }
     ]
   },
   "Africa": {
-    color: "#DDBF8C", // Sandy brown
+    color: "#FF9800", // Orange like classic Risk
     territories: [
-      { name: "Egypt", x: 520, y: 320, width: 70, height: 60 },
-      { name: "East Africa", x: 580, y: 380, width: 80, height: 90 },
-      { name: "North Africa", x: 420, y: 340, width: 100, height: 70 },
-      { name: "Congo", x: 500, y: 450, width: 80, height: 80 },
-      { name: "South Africa", x: 520, y: 530, width: 90, height: 70 },
-      { name: "Madagascar", x: 620, y: 550, width: 50, height: 60 }
+      { 
+        name: "North Africa", 
+        svgPath: "M 10 40 Q 20 35 40 32 Q 80 28 120 25 Q 140 22 160 18 Q 170 15 172 10 Q 170 5 160 3 Q 120 0 80 0 Q 40 1 20 4 Q 5 8 2 15 Q 0 25 5 35 Q 8 38 10 40 Z",
+        x: 420, y: 320, width: 175, height: 45
+      },
+      { 
+        name: "Egypt", 
+        svgPath: "M 8 2 Q 15 0 25 0 Q 40 1 50 5 Q 58 10 60 18 Q 62 30 63 42 Q 62 55 60 65 Q 55 75 45 78 Q 30 80 15 78 Q 5 75 2 68 Q 0 55 2 40 Q 4 25 6 15 Q 8 8 8 2 Z",
+        x: 580, y: 320, width: 65, height: 82
+      },
+      { 
+        name: "East Africa", 
+        svgPath: "M 5 25 Q 10 20 20 18 Q 35 16 50 18 Q 65 22 70 30 Q 75 45 76 60 Q 77 80 75 95 Q 72 105 65 110 Q 50 115 35 112 Q 20 108 10 100 Q 2 88 1 70 Q 2 50 4 35 Q 5 28 5 25 Z",
+        x: 580, y: 400, width: 80, height: 118
+      },
+      { 
+        name: "Congo", 
+        svgPath: "M 15 10 Q 25 8 45 8 Q 80 10 115 12 Q 140 15 160 20 Q 175 25 180 35 Q 182 50 180 70 Q 178 90 170 105 Q 155 115 130 118 Q 100 120 70 118 Q 45 115 25 108 Q 10 98 5 85 Q 2 65 5 45 Q 8 25 12 15 Q 13 12 15 10 Z",
+        x: 420, y: 375, width: 185, height: 125
+      },
+      { 
+        name: "South Africa", 
+        svgPath: "M 20 8 Q 40 5 70 5 Q 110 6 150 10 Q 175 15 185 22 Q 190 30 188 40 Q 185 52 175 60 Q 150 68 110 70 Q 70 68 40 64 Q 20 58 10 48 Q 5 35 8 25 Q 12 15 16 10 Q 18 8 20 8 Z",
+        x: 450, y: 500, width: 195, height: 75
+      },
+      { 
+        name: "Madagascar", 
+        svgPath: "M 8 5 Q 12 2 16 2 Q 20 3 22 8 Q 24 15 25 25 Q 26 40 24 50 Q 22 58 18 62 Q 12 65 8 62 Q 4 58 2 50 Q 0 35 2 25 Q 4 15 6 8 Q 7 6 8 5 Z",
+        x: 680, y: 520, width: 28, height: 67
+      }
     ]
   },
   "Australia": {
-    color: "#E1BEE7", // Light purple
+    color: "#9C27B0", // Purple like classic Risk
     territories: [
-      { name: "Indonesia", x: 820, y: 450, width: 80, height: 60 },
-      { name: "New Guinea", x: 900, y: 460, width: 70, height: 50 },
-      { name: "Western Australia", x: 820, y: 520, width: 90, height: 80 },
-      { name: "Eastern Australia", x: 910, y: 530, width: 90, height: 70 }
+      { name: "Indonesia", x: 820, y: 450, width: 80, height: 60, borderRadius: "25px 25px 15px 15px" },
+      { name: "New Guinea", x: 900, y: 460, width: 70, height: 50, borderRadius: "30px 30px 25px 25px" },
+      { name: "Western Australia", x: 820, y: 520, width: 90, height: 80, borderRadius: "20px 15px 30px 35px" },
+      { name: "Eastern Australia", x: 910, y: 530, width: 90, height: 70, borderRadius: "15px 35px 35px 15px" }
     ]
   }
 };
@@ -96,74 +120,201 @@ function createRiskBoard() {
   container.style.cssText = `
     width: 1000px;
     height: 700px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border: 3px solid #8B4513;
-    border-radius: 15px;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%),
+      linear-gradient(45deg, #F4E4BC 0%, #E8D5B7 25%, #F4E4BC 50%, #E8D5B7 75%, #F4E4BC 100%);
+    border: 5px solid #8B4513;
+    border-radius: 20px;
     position: relative;
     margin: 20px auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 
+      0 0 0 3px #D2691E,
+      0 15px 35px rgba(0,0,0,0.4),
+      inset 0 0 20px rgba(139, 69, 19, 0.1);
     font-family: 'Georgia', serif;
     overflow: hidden;
   `;
+
+  // Add vintage paper texture overlay
+  const textureOverlay = document.createElement('div');
+  textureOverlay.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 2%),
+      radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.1) 0%, transparent 2%),
+      radial-gradient(circle at 45% 80%, rgba(101, 67, 33, 0.05) 0%, transparent 3%);
+    pointer-events: none;
+  `;
+  container.appendChild(textureOverlay);
 
   // Add title
   const title = document.createElement('div');
   title.textContent = 'RISK: The Game of Global Domination';
   title.style.cssText = `
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #8B4513;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 
+      2px 2px 0px #D2691E,
+      4px 4px 8px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
   `;
   container.appendChild(title);
+
+  // Add compass rose decoration
+  const compass = document.createElement('div');
+  compass.innerHTML = '⚜️';
+  compass.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+  `;
+  container.appendChild(compass);
 
   // Create territories for each continent
   Object.entries(continents).forEach(([continentName, continent]) => {
     continent.territories.forEach(territory => {
-      const territoryDiv = document.createElement('div');
-      territoryDiv.style.cssText = `
-        position: absolute;
-        left: ${territory.x}px;
-        top: ${territory.y}px;
-        width: ${territory.width}px;
-        height: ${territory.height}px;
-        background: ${continent.color};
-        border: 2px solid #654321;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 11px;
-        font-weight: bold;
-        color: #2c3e50;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-        text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-      `;
-      
-      territoryDiv.textContent = territory.name;
-      territoryDiv.title = `${territory.name} (${continentName})`;
-      
-      // Add hover effects
-      territoryDiv.addEventListener('mouseenter', () => {
-        territoryDiv.style.transform = 'scale(1.05)';
-        territoryDiv.style.zIndex = '10';
-        territoryDiv.style.boxShadow = '4px 4px 12px rgba(0,0,0,0.4)';
-      });
-      
-      territoryDiv.addEventListener('mouseleave', () => {
-        territoryDiv.style.transform = 'scale(1)';
-        territoryDiv.style.zIndex = '1';
-        territoryDiv.style.boxShadow = '2px 2px 6px rgba(0,0,0,0.2)';
-      });
-      
-      container.appendChild(territoryDiv);
+      if (territory.svgPath) {
+        // Create SVG territory with accurate borders
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.style.cssText = `
+          position: absolute;
+          left: ${territory.x}px;
+          top: ${territory.y}px;
+          width: ${territory.width}px;
+          height: ${territory.height}px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 2;
+        `;
+        
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', territory.svgPath);
+        path.style.cssText = `
+          fill: ${continent.color};
+          stroke: #2C1810;
+          stroke-width: 2;
+          filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        `;
+        
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', territory.width / 2);
+        text.setAttribute('y', territory.height / 2);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('dominant-baseline', 'central');
+        text.style.cssText = `
+          font-size: 10px;
+          font-weight: bold;
+          fill: #1a1a1a;
+          text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+          pointer-events: none;
+          font-family: Georgia, serif;
+        `;
+        text.textContent = territory.name;
+        
+        svg.appendChild(path);
+        svg.appendChild(text);
+        
+        // Add hover effects
+        svg.addEventListener('mouseenter', () => {
+          svg.style.transform = 'scale(1.05)';
+          svg.style.zIndex = '10';
+          path.style.strokeWidth = '3';
+          path.style.stroke = '#1a1a1a';
+          path.style.filter = 'drop-shadow(3px 3px 8px rgba(0,0,0,0.4))';
+        });
+        
+        svg.addEventListener('mouseleave', () => {
+          svg.style.transform = 'scale(1)';
+          svg.style.zIndex = '2';
+          path.style.strokeWidth = '2';
+          path.style.stroke = '#2C1810';
+          path.style.filter = 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))';
+        });
+        
+        svg.title = `${territory.name} (${continentName})`;
+        container.appendChild(svg);
+      } else {
+        // Fallback to regular div territories
+        const territoryDiv = document.createElement('div');
+        const borderRadius = territory.borderRadius || '15px';
+        const clipPath = territory.clipPath || '';
+        territoryDiv.style.cssText = `
+          position: absolute;
+          left: ${territory.x}px;
+          top: ${territory.y}px;
+          width: ${territory.width}px;
+          height: ${territory.height}px;
+          background: ${continent.color};
+          border: 3px solid #2C1810;
+          border-radius: ${borderRadius};
+          ${clipPath ? `clip-path: ${clipPath};` : ''}
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          font-weight: bold;
+          color: #1a1a1a;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 
+            0 0 0 1px rgba(255,255,255,0.3),
+            inset 0 2px 4px rgba(255,255,255,0.4),
+            inset 0 -2px 4px rgba(0,0,0,0.2),
+            3px 3px 8px rgba(0,0,0,0.3);
+          text-shadow: 
+            1px 1px 2px rgba(255,255,255,0.8),
+            -1px -1px 1px rgba(0,0,0,0.3);
+          z-index: 2;
+          border-style: solid;
+        `;
+       
+         territoryDiv.textContent = territory.name;
+         territoryDiv.title = `${territory.name} (${continentName})`;
+         
+         // Add hover effects
+         territoryDiv.addEventListener('mouseenter', () => {
+           territoryDiv.style.transform = 'scale(1.05)';
+           territoryDiv.style.zIndex = '10';
+           territoryDiv.style.boxShadow = `
+             0 0 0 2px rgba(255,255,255,0.8),
+             inset 0 2px 4px rgba(255,255,255,0.6),
+             inset 0 -2px 4px rgba(0,0,0,0.3),
+             4px 4px 12px rgba(0,0,0,0.4)`;
+           territoryDiv.style.borderColor = '#1a1a1a';
+           territoryDiv.style.borderWidth = '4px';
+         });
+         
+         territoryDiv.addEventListener('mouseleave', () => {
+           territoryDiv.style.transform = 'scale(1)';
+           territoryDiv.style.zIndex = '2';
+           territoryDiv.style.boxShadow = `
+             0 0 0 1px rgba(255,255,255,0.3),
+             inset 0 2px 4px rgba(255,255,255,0.4),
+             inset 0 -2px 4px rgba(0,0,0,0.2),
+             3px 3px 8px rgba(0,0,0,0.3)`;
+           territoryDiv.style.borderColor = '#2C1810';
+           territoryDiv.style.borderWidth = '3px';
+         });
+         
+         container.appendChild(territoryDiv);
+       }
     });
   });
 
@@ -171,22 +322,28 @@ function createRiskBoard() {
   const legend = document.createElement('div');
   legend.style.cssText = `
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(255,255,255,0.9);
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #8B4513;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(244, 228, 188, 0.95);
+    padding: 18px;
+    border-radius: 15px;
+    border: 4px double #8B4513;
     font-size: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 
+      0 6px 12px rgba(0,0,0,0.3),
+      inset 0 1px 3px rgba(255,255,255,0.3);
+    z-index: 5;
   `;
   
   const legendTitle = document.createElement('div');
   legendTitle.textContent = 'Continents:';
   legendTitle.style.cssText = `
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #8B4513;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    border-bottom: 2px solid #8B4513;
+    padding-bottom: 5px;
   `;
   legend.appendChild(legendTitle);
   
@@ -195,22 +352,29 @@ function createRiskBoard() {
     legendItem.style.cssText = `
       display: flex;
       align-items: center;
-      margin: 4px 0;
+      margin: 6px 0;
     `;
     
     const colorBox = document.createElement('div');
     colorBox.style.cssText = `
-      width: 20px;
-      height: 15px;
+      width: 24px;
+      height: 18px;
       background: ${continent.color};
-      border: 1px solid #654321;
-      margin-right: 8px;
-      border-radius: 3px;
+      border: 3px double #2C1810;
+      margin-right: 10px;
+      border-radius: 5px;
+      box-shadow: 
+        inset 0 1px 2px rgba(255,255,255,0.4),
+        inset 0 -1px 2px rgba(0,0,0,0.2);
     `;
     
     const nameSpan = document.createElement('span');
     nameSpan.textContent = name;
-    nameSpan.style.color = '#2c3e50';
+    nameSpan.style.cssText = `
+      color: #2c3e50;
+      text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+      font-weight: 600;
+    `;
     
     legendItem.appendChild(colorBox);
     legendItem.appendChild(nameSpan);
@@ -223,21 +387,24 @@ function createRiskBoard() {
   const armyDisplay = document.createElement('div');
   armyDisplay.style.cssText = `
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(255,255,255,0.9);
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #8B4513;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(244, 228, 188, 0.95);
+    padding: 18px;
+    border-radius: 15px;
+    border: 4px double #8B4513;
     font-size: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 
+      0 6px 12px rgba(0,0,0,0.3),
+      inset 0 1px 3px rgba(255,255,255,0.3);
+    z-index: 5;
   `;
   
   armyDisplay.innerHTML = `
-    <div style="font-weight: bold; margin-bottom: 8px; color: #8B4513;">Game Info:</div>
-    <div style="color: #2c3e50;">Click territories to select</div>
-    <div style="color: #2c3e50;">Hover for continent info</div>
-    <div style="color: #2c3e50;">Total Territories: ${Object.values(continents).reduce((sum, continent) => sum + continent.territories.length, 0)}</div>
+    <div style="font-weight: bold; margin-bottom: 8px; color: #8B4513; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); border-bottom: 2px solid #8B4513; padding-bottom: 5px;">Game Info:</div>
+    <div style="color: #2c3e50; margin: 4px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.8);">Click territories to select</div>
+    <div style="color: #2c3e50; margin: 4px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.8);">Hover for continent info</div>
+    <div style="color: #2c3e50; margin: 4px 0; text-shadow: 1px 1px 1px rgba(255,255,255,0.8);">Total Territories: ${Object.values(continents).reduce((sum, continent) => sum + continent.territories.length, 0)}</div>
   `;
   
   container.appendChild(armyDisplay);
